@@ -30,7 +30,6 @@ class CSVParserTests: XCTestCase {
     }
     
     func testParserShouldParseRowsInCorrenspondenceWithHeaders() {
-        print(parser.rows)
         XCTAssertEqual(parser.rows.count, 5)
         XCTAssertEqual(parser.rows[0], ["id": "1", "identifier": "bulbasaur", "order": "1", "species_id": "1", "height": "7", "weight": "69", "is_default": "1", "base_experience": "64"])
     }
@@ -45,6 +44,10 @@ class CSVParserTests: XCTestCase {
         XCTAssertThrowsError(try CSVParser(contentsOf: URL(string: "file:///")), "") { (error) in
             XCTAssertEqual(error as? CSVParserError, CSVParserError.contentNotFoundError)
         }
+    }
+    
+    func testParserShouldNotBeInitializedWithNilUrl() {
+        XCTAssertNil(try? CSVParser(contentsOf: nil))
     }
     
 }

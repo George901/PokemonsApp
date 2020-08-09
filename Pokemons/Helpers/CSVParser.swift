@@ -6,7 +6,7 @@
 //  Copyright © 2020 Georgiy Farafonov. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 enum CSVParserError: Error {
     case nilUrlError
@@ -18,23 +18,21 @@ class CSVParser: NSObject {
     private(set) var lines: [String] = []
     private(set) var headers: [String] = []
     private(set) var rows: [[String : String]] = []
-    private let content: String
     
     init(contentsOf url: URL?) throws {
         guard let url = url else { throw CSVParserError.nilUrlError }
-        guard let result = try? String(contentsOf: url, encoding: String.Encoding.utf8) else { throw CSVParserError.contentNotFoundError }
-        content = result
+        guard let content = try? String(contentsOf: url, encoding: String.Encoding.utf8) else { throw CSVParserError.contentNotFoundError }
         super.init()
-        parseContent()
+        parse(content)
     }
     
-    private func parseContent() {
-        parseLines()
+    private func parse(_ content: String) {
+        parseLines(from: content)
         parseHeaders()
         parseRows()
     }
     
-    private func parseLines() {
+    private func parseLines(from content: String) {
         lines = content.components(separatedBy: "\n").filter({!$0.isEmpty})
     }
     
