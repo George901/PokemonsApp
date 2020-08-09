@@ -10,10 +10,10 @@ import UIKit
 
 final class PokemonsCoordinator: NSObject, Coordinator {
     
-    var navigationController: UINavigationController
-    var parentCoordinator: Coordinator?
-    var childCoordinators: [Coordinator] = []
+    unowned var parentCoordinator: Coordinator?
     unowned var initialController: UIViewController
+    var navigationController: UINavigationController
+    var childCoordinators: [Coordinator] = []
     
     required init(navigationController: UINavigationController) {
         self.navigationController = navigationController
