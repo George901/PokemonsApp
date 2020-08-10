@@ -21,7 +21,8 @@ class CSVParser: NSObject {
     
     init(contentsOf url: URL?) throws {
         guard let url = url else { throw CSVParserError.nilUrlError }
-        guard let content = try? String(contentsOf: url, encoding: String.Encoding.utf8) else { throw CSVParserError.contentNotFoundError }
+        guard let content = try? String(contentsOf: url, encoding: String.Encoding.utf8),
+            !content.isEmpty else { throw CSVParserError.contentNotFoundError }
         super.init()
         parse(content)
     }

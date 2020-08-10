@@ -6,10 +6,11 @@ target 'Pokemons' do
   use_frameworks!
 
   pod 'Alamofire', '4.9.1'
+  pod 'ObjectMapper'
 
   target 'PokemonsTests' do
     inherit! :search_paths
-    # Pods for testing
+    pod 'ObjectMapper'
   end
 
 end
