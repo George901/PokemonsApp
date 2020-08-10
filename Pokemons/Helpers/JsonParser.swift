@@ -34,7 +34,7 @@ class JsonParser: NSObject {
         if let data = json as? [[String : Any]] {
             parseArrayFrom(data: data, onSuccess: onSuccess, onError: onError)
         } else {
-            onSuccess?(nil)
+            onError?(JsonParserError.wrongDataFormatError)
         }
     }
 
