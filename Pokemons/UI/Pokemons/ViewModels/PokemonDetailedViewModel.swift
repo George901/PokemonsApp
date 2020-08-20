@@ -8,6 +8,37 @@
 
 import UIKit
 
-class PokemonDetailedViewModel: NSObject {
+protocol PokemonDetailsViewModel {
+    var pokemon: Pokemon { get set }
+    var onUpdateDetails: (() -> ())? { get set }
+    func updatePokemonDetails(onError: ErrorBlock?)
+}
 
+class PokemonDetailedViewModel: NSObject, PokemonDetailsViewModel {
+    
+    var pokemon: Pokemon {
+        didSet {
+            onUpdateDetails?()
+        }
+    }
+    var onUpdateDetails: (() -> ())?
+    
+    private let api: PokemonsApi
+    
+    init(pokemon: Pokemon, api: PokemonsApi) {
+        self.pokemon = pokemon
+        self.api = api
+        super.init()
+    }
+    
+    func updatePokemonDetails(onError: ErrorBlock?) {
+        api.loadPokemonDetails(pokemonId: pokemon.id, onSuccess: { (pokemon) in
+            if let poke = pokemon {
+                self.pokemon = poke
+            } else {
+                onError?(nil)
+            }
+        }, onError: onError)
+    }
+    
 }

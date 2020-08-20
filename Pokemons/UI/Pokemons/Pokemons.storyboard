@@ -116,10 +116,10 @@
             </objects>
             <point key="canvasLocation" x="148" y="128"/>
         </scene>
-        <!--Pokemon DetailedVC-->
+        <!--Pokemon Detailed Controller-->
         <scene sceneID="HKU-lU-jSf">
             <objects>
-                <viewController id="q6K-6I-NaP" customClass="PokemonDetailedVC" customModule="Pokemons" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="q6K-6I-NaP" customClass="PokemonDetailedController" customModule="Pokemons" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tV5-1H-kYR"/>
                         <viewControllerLayoutGuide type="bottom" id="kIT-3y-0IB"/>
@@ -390,10 +390,11 @@
                         <outlet property="defenceLbl" destination="RoP-Nn-vRn" id="g29-tI-ZCl"/>
                         <outlet property="descriptionLbl" destination="7KE-JB-cgv" id="4Xz-eG-wJS"/>
                         <outlet property="evoLbl" destination="vOY-D8-uhc" id="ZpL-u6-ZPd"/>
+                        <outlet property="headerHeightConstraint" destination="GNU-Kg-VU7" id="kJy-GC-gs9"/>
                         <outlet property="heightLbl" destination="9kY-Qb-29D" id="vdf-vN-y1n"/>
                         <outlet property="idLbl" destination="msS-jr-gVk" id="9uq-8g-nak"/>
-                        <outlet property="mainImg" destination="fXP-Im-8J6" id="8Pi-aO-7Fg"/>
-                        <outlet property="nameLbl" destination="vpk-Ei-B0c" id="660-1y-0sb"/>
+                        <outlet property="mainImage" destination="fXP-Im-8J6" id="8Pi-aO-7Fg"/>
+                        <outlet property="nameLabel" destination="vpk-Ei-B0c" id="660-1y-0sb"/>
                         <outlet property="nextEvoImg" destination="Ov6-47-q1E" id="EAE-RB-SXD"/>
                         <outlet property="typeLbl" destination="gHq-1J-Ucz" id="V5Y-X4-ald"/>
                         <outlet property="weightLbl" destination="RFG-wK-jRd" id="AEI-7O-RQK"/>

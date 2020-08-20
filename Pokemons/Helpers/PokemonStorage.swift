@@ -12,13 +12,14 @@ class PokemonStorage: NSObject, Storage {
     
     var items: [Pokemon] = []
     
-    func loadItems() {
+    func loadItems() -> [Pokemon] {
         do {
             let parser = try CSVParser(contentsOf: Bundle.main.url(forResource: "pokemon", withExtension: ".csv"))
             parseItemsFrom(parser)
         } catch let error {
             print(error)
         }
+        return items
     }
     
     private func parseItemsFrom(_ parser: CSVParser) {

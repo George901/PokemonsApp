@@ -10,21 +10,41 @@ import UIKit
 
 class PokemonDetailedController: BaseController, CreateFromStoryboard {
     
-    @IBOutlet weak var nameLbl: UILabel!
-    @IBOutlet weak var mainImg: UIImageView!
-    @IBOutlet weak var descriptionLbl: UILabel!
-    @IBOutlet weak var typeLbl: UILabel!
-    @IBOutlet weak var defenceLbl: UILabel!
-    @IBOutlet weak var heightLbl: UILabel!
-    @IBOutlet weak var weightLbl: UILabel!
-    @IBOutlet weak var idLbl: UILabel!
-    @IBOutlet weak var baseAttackLbl: UILabel!
-    @IBOutlet weak var currentEvoImg: UIImageView!
-    @IBOutlet weak var nextEvoImg: UIImageView!
-    @IBOutlet weak var evoLbl: UILabel!
+    var viewModel: PokemonDetailsViewModel!
+    
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var mainImage: UIImageView!
+    @IBOutlet private weak var descriptionLbl: UILabel!
+    @IBOutlet private weak var typeLbl: UILabel!
+    @IBOutlet private weak var defenceLbl: UILabel!
+    @IBOutlet private weak var heightLbl: UILabel!
+    @IBOutlet private weak var weightLbl: UILabel!
+    @IBOutlet private weak var idLbl: UILabel!
+    @IBOutlet private weak var baseAttackLbl: UILabel!
+    @IBOutlet private weak var currentEvoImg: UIImageView!
+    @IBOutlet private weak var nextEvoImg: UIImageView!
+    @IBOutlet private weak var evoLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupBindings()
+        
+        
+    }
+    
+    private func setupBindings() {
+        viewModel.onUpdateDetails = { [weak self] in
+            self?.setupPokemonData()
+        }
+    }
+    
+    private func setupPokemonData() {
+        nameLabel.text = viewModel.pokemon.name
+        mainImage.image = UIImage(named: "\(viewModel.pokemon.id)")
+        weightLbl.text = viewModel.pokemon.weight
+        heightLbl.text = viewModel.pokemon.height ?? "-"
+        idLbl.text = "\(viewModel.pokemon.id)"
+        
     }
 
 }

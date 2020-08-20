@@ -9,5 +9,5 @@
 import Foundation
 
 protocol PokemonsApi: NSObjectProtocol {
-    func loadPokemonDetails(pokemonId: String, onSuccess: SuccessBlock<Pokemon>?, onError: ErrorBlock?)
+    func loadPokemonDetails(pokemonId: Int, onSuccess: SuccessBlock<Pokemon>?, onError: ErrorBlock?)
 }

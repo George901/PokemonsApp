@@ -10,25 +10,18 @@ import UIKit
 
 class PokemonsListController: BaseController, CreateFromStoryboard {
 
-    @IBOutlet weak var collectionView: UICollectionView! {
+    var viewModel: PokemonsViewModel!
+    
+    @IBOutlet private weak var collectionView: UICollectionView! {
         didSet {
             collectionView.dataSource = self
             collectionView.delegate = self
         }
     }
     
-    @IBOutlet weak var searchBar: UISearchBar! {
+    @IBOutlet private weak var searchBar: UISearchBar! {
         didSet {
             searchBar.delegate = self
-        }
-    }
-    
-    var viewModel: PokemonsViewModel! {
-        didSet {
-            viewModel.onSearchChange = { [weak self] pokemons in
-                self?.pokemons = pokemons
-                self?.collectionView.reloadData()
-            }
         }
     }
     
@@ -36,6 +29,14 @@ class PokemonsListController: BaseController, CreateFromStoryboard {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupBindings()
+    }
+    
+    private func setupBindings() {
+        viewModel.onSearchChange = { [weak self] (pokemons) in
+            self?.pokemons = pokemons
+            self?.collectionView.reloadData()
+        }
     }
     
 }

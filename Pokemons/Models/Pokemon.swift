@@ -18,6 +18,7 @@ class Pokemon: NSObject, Mappable {
     var weight: String?
     var abilities: [Ability]?
     var stats: [Stat]?
+    var types: [Type]?
     
     required init?(map: Map) {}
     
@@ -35,6 +36,7 @@ class Pokemon: NSObject, Mappable {
         weight <- map["weight"]
         abilities <- map["abilities"]
         stats <- map["stats"]
+        types <- map["types"]
     }
     
 }

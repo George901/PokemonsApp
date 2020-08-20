@@ -16,13 +16,18 @@ protocol PokemonsViewModel {
 }
 
 class PokemonsListViewModel: NSObject, PokemonsViewModel {
-
-    var onSearchChange: (([Pokemon]) -> ())?
     
     private var allPokemons: [Pokemon] = []
     private let coordinator: PokemonsCoordinator
     private let storage: Storage
+    
     private var searchedPokemons: [Pokemon] = [] {
+        didSet {
+            onSearchChange?(searchedPokemons)
+        }
+    }
+    
+    var onSearchChange: (([Pokemon]) -> ())? {
         didSet {
             onSearchChange?(searchedPokemons)
         }
@@ -33,6 +38,7 @@ class PokemonsListViewModel: NSObject, PokemonsViewModel {
         self.storage = storage
         self.coordinator = coordinator
         super.init()
+        loadPokemons()
       }
     
     func showPokemonInfo(_ pokemon: Pokemon) {
@@ -40,11 +46,12 @@ class PokemonsListViewModel: NSObject, PokemonsViewModel {
     }
 
     func searchForPokemonByName(_ name: String) {
-        searchedPokemons = allPokemons.filter({$0.name.lowercased().contains(name.lowercased())})
+        searchedPokemons = name.isEmpty ? allPokemons : allPokemons.filter({$0.name.lowercased().contains(name.lowercased())})
     }
     
     private func loadPokemons() {
-        storage.loadItems()
+        allPokemons = storage.loadItems()
+        searchedPokemons = allPokemons
     }
     
 }

@@ -17,7 +17,7 @@ class PokemonsApiClient: NSObject, PokemonsApi {
         super.init()
     }
     
-    func loadPokemonDetails(pokemonId: String, onSuccess: SuccessBlock<Pokemon>?, onError: ErrorBlock?) {
+    func loadPokemonDetails(pokemonId: Int, onSuccess: SuccessBlock<Pokemon>?, onError: ErrorBlock?) {
         apiClient.get(url: URL(string: "")!,
                       parameters: ["pokemonID" : pokemonId],
                       onSuccess: {(json) in

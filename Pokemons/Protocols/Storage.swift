@@ -10,5 +10,5 @@ import Foundation
 
 protocol Storage {
     var items: [Pokemon] { get set }
-    func loadItems()
+    func loadItems() -> [Pokemon]
 }

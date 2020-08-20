@@ -11,14 +11,19 @@ import UIKit
 final class PokemonsCoordinator: NSObject, Coordinator {
     
     unowned var parentCoordinator: Coordinator?
-    unowned var initialController: UIViewController
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
     
     required init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        initialController = navigationController.viewControllers[0]
         super.init()
+    }
+    
+    func showPokemonDetails(_ pokemon: Pokemon) {
+        
+        let detailedVC = PokemonDetailedController.instantiateFromStoryboardNamed("Pokemons", storyboardIdentifier: "PokemonsListController", bundle: Bundle.main)
+        
+        
     }
 
 }
