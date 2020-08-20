@@ -11,6 +11,7 @@ import ObjectMapper
 
 enum JsonParserError: Error {
     case wrongDataFormatError
+    case parserError
 }
 
 class JsonParser: NSObject {
@@ -42,7 +43,7 @@ class JsonParser: NSObject {
         if let parsedObject = Mapper<T>().map(JSON: data) {
             onSuccess?(parsedObject)
         } else {
-            onSuccess?(nil)
+            onError?(JsonParserError.parserError)
         }
     }
     
@@ -50,7 +51,7 @@ class JsonParser: NSObject {
         if let parsedArray = Mapper<T>().mapArray(JSONObject: data) {
             onSuccess?(parsedArray)
         } else {
-            onSuccess?(nil)
+            onError?(JsonParserError.parserError)
         }
     }
     
