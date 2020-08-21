@@ -42,7 +42,7 @@ class PokemonsListViewModel: NSObject, PokemonsViewModel {
       }
     
     func showPokemonInfo(_ pokemon: Pokemon) {
-        
+        coordinator.showPokemonDetails(pokemon)
     }
 
     func searchForPokemonByName(_ name: String) {

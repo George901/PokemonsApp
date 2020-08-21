@@ -21,7 +21,7 @@ class Stat: NSObject, Mappable {
         
         baseStat <- map["base_stat"]
         effort <- map["effort"]
-        name <- map["name"]
+        name <- map["stat.name"]
         
     }
     

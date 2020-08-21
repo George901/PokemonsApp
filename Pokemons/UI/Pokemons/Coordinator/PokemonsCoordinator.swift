@@ -21,9 +21,17 @@ final class PokemonsCoordinator: NSObject, Coordinator {
     
     func showPokemonDetails(_ pokemon: Pokemon) {
         
-        let detailedVC = PokemonDetailedController.instantiateFromStoryboardNamed("Pokemons", storyboardIdentifier: "PokemonsListController", bundle: Bundle.main)
+        let detailedVC = PokemonDetailedController.instantiateFromStoryboardNamed("Pokemons", storyboardIdentifier: "PokemonDetailedController", bundle: Bundle.main)
+        let viewModel = PokemonDetailedViewModel(pokemon: pokemon,
+                                                 api: PokemonsApiClient(apiClient: RestApiClient()))
+        viewModel.coordinator = self
+        detailedVC.viewModel = viewModel
+        navigationController.pushViewController(detailedVC, animated: true)
         
-        
+    }
+    
+    func backToList() {
+        navigationController.popViewController(animated: true)
     }
 
 }

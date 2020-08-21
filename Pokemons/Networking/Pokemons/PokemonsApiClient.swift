@@ -18,10 +18,10 @@ class PokemonsApiClient: NSObject, PokemonsApi {
     }
     
     func loadPokemonDetails(pokemonId: Int, onSuccess: SuccessBlock<Pokemon>?, onError: ErrorBlock?) {
-        apiClient.get(url: URL(string: "")!,
-                      parameters: ["pokemonID" : pokemonId],
+        apiClient.get(url: URL(string: "https://pokeapi.co/api/v2/pokemon/\(pokemonId)")!,
+                      parameters: nil,
                       onSuccess: {(json) in
-                        
+                        JsonParser(json: json).parseObject(mappable: Pokemon.self, onSuccess: onSuccess, onError: onError)
                         },
                       onError: onError)
     }

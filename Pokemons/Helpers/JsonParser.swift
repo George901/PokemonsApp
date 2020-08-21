@@ -16,9 +16,9 @@ enum JsonParserError: Error {
 
 class JsonParser: NSObject {
     
-    private let json: Any
+    private let json: Any?
     
-    init(json: Any) {
+    init(json: Any?) {
         self.json = json
         super.init()
     }

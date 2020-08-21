@@ -14,8 +14,8 @@ class Pokemon: NSObject, Mappable {
     var name: String = ""
     var id: Int = 0
     var baseExperience: Int?
-    var height: String?
-    var weight: String?
+    var height: Int?
+    var weight: Int?
     var abilities: [Ability]?
     var stats: [Stat]?
     var types: [Type]?
@@ -37,6 +37,16 @@ class Pokemon: NSObject, Mappable {
         abilities <- map["abilities"]
         stats <- map["stats"]
         types <- map["types"]
+    }
+    
+    func getType() -> String? {
+        guard let types = types, !types.isEmpty else { return nil }
+        var result: String = ""
+        types.forEach { (type) in
+            result += "\(type.name ?? "-"), "
+        }
+        result.removeLast(2)
+        return result
     }
     
 }

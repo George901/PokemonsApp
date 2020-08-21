@@ -12,24 +12,21 @@ class PokemonsListController: BaseController, CreateFromStoryboard {
 
     var viewModel: PokemonsViewModel!
     
-    @IBOutlet private weak var collectionView: UICollectionView! {
-        didSet {
-            collectionView.dataSource = self
-            collectionView.delegate = self
-        }
-    }
-    
-    @IBOutlet private weak var searchBar: UISearchBar! {
-        didSet {
-            searchBar.delegate = self
-        }
-    }
+    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var searchBar: UISearchBar!
     
     private var pokemons: [Pokemon] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupDelegates()
         setupBindings()
+    }
+    
+    private func setupDelegates() {
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        searchBar.delegate = self
     }
     
     private func setupBindings() {

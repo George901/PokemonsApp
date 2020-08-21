@@ -27,7 +27,6 @@ class PokemonStorage: NSObject, Storage {
         for row in rows {
             let pokeId = Int(row["id"]!)!
             let name = row["identifier"]!
-            
             let poke = Pokemon(name: name, id: pokeId)
             items.append(poke)
         }

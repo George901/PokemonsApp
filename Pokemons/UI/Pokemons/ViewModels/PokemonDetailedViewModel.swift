@@ -12,6 +12,7 @@ protocol PokemonDetailsViewModel {
     var pokemon: Pokemon { get set }
     var onUpdateDetails: (() -> ())? { get set }
     func updatePokemonDetails(onError: ErrorBlock?)
+    func back()
 }
 
 class PokemonDetailedViewModel: NSObject, PokemonDetailsViewModel {
@@ -21,7 +22,10 @@ class PokemonDetailedViewModel: NSObject, PokemonDetailsViewModel {
             onUpdateDetails?()
         }
     }
+    
     var onUpdateDetails: (() -> ())?
+    var coordinator: PokemonsCoordinator!
+    
     
     private let api: PokemonsApi
     
@@ -39,6 +43,10 @@ class PokemonDetailedViewModel: NSObject, PokemonDetailsViewModel {
                 onError?(nil)
             }
         }, onError: onError)
+    }
+    
+    func back() {
+        coordinator.backToList()
     }
     
 }
