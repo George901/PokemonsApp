@@ -17,17 +17,21 @@ protocol PokemonDetailsViewModel {
 
 class PokemonDetailedViewModel: NSObject, PokemonDetailsViewModel {
     
+    // MARK: - Public fields
+    
+    var onUpdateDetails: (() -> ())?
+    var coordinator: ListCoordinator!
     var pokemon: Pokemon {
         didSet {
             onUpdateDetails?()
         }
     }
-    
-    var onUpdateDetails: (() -> ())?
-    var coordinator: PokemonsCoordinator!
-    
+
+    // MARK: - Private fields
     
     private let api: PokemonsApi
+    
+    // MARK: - Public methods
     
     init(pokemon: Pokemon, api: PokemonsApi) {
         self.pokemon = pokemon

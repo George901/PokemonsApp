@@ -19,8 +19,8 @@
 		405F39E524DEEB0B00C9E984 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 405F39E324DEEB0B00C9E984 /* LaunchScreen.storyboard */; };
 		405F3A0024DEEFB600C9E984 /* Pokemons.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 405F39FF24DEEFB600C9E984 /* Pokemons.storyboard */; };
 		405F3A0424DEF03600C9E984 /* PokemonsCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405F3A0324DEF03600C9E984 /* PokemonsCoordinatorTests.swift */; };
-		405F3A0624DEF09000C9E984 /* PokemonsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405F3A0524DEF09000C9E984 /* PokemonsCoordinator.swift */; };
-		405F3A0724DEF0E400C9E984 /* PokemonsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405F3A0524DEF09000C9E984 /* PokemonsCoordinator.swift */; };
+		405F3A0624DEF09000C9E984 /* ListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405F3A0524DEF09000C9E984 /* ListCoordinator.swift */; };
+		405F3A0724DEF0E400C9E984 /* ListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405F3A0524DEF09000C9E984 /* ListCoordinator.swift */; };
 		405F3A0A24DEF18600C9E984 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405F3A0924DEF18600C9E984 /* Coordinator.swift */; };
 		405F3A0B24DEF18600C9E984 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405F3A0924DEF18600C9E984 /* Coordinator.swift */; };
 		405F3A0D24DEFA6C00C9E984 /* PokemonsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405F3A0C24DEFA6C00C9E984 /* PokemonsListController.swift */; };
@@ -78,7 +78,7 @@
 		405F39F124DEEB0B00C9E984 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		405F39FF24DEEFB600C9E984 /* Pokemons.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Pokemons.storyboard; sourceTree = "<group>"; };
 		405F3A0324DEF03600C9E984 /* PokemonsCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonsCoordinatorTests.swift; sourceTree = "<group>"; };
-		405F3A0524DEF09000C9E984 /* PokemonsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonsCoordinator.swift; sourceTree = "<group>"; };
+		405F3A0524DEF09000C9E984 /* ListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCoordinator.swift; sourceTree = "<group>"; };
 		405F3A0924DEF18600C9E984 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		405F3A0C24DEFA6C00C9E984 /* PokemonsListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonsListController.swift; sourceTree = "<group>"; };
 		405F3A0E24DEFA9F00C9E984 /* CreateFromStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFromStoryboard.swift; sourceTree = "<group>"; };
@@ -255,7 +255,7 @@
 		405F3A0224DEF01800C9E984 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
-				405F3A0524DEF09000C9E984 /* PokemonsCoordinator.swift */,
+				405F3A0524DEF09000C9E984 /* ListCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -514,7 +514,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				405F3A0624DEF09000C9E984 /* PokemonsCoordinator.swift in Sources */,
+				405F3A0624DEF09000C9E984 /* ListCoordinator.swift in Sources */,
 				405F3A3C24E26C5300C9E984 /* Stat.swift in Sources */,
 				405F3A0F24DEFA9F00C9E984 /* CreateFromStoryboard.swift in Sources */,
 				405F3A2424E17ED000C9E984 /* PokemonDetailedController.swift in Sources */,
@@ -548,7 +548,7 @@
 				405F3A0B24DEF18600C9E984 /* Coordinator.swift in Sources */,
 				405F3A3A24E1D0DD00C9E984 /* BaseController.swift in Sources */,
 				4000BE3224EE6304007075A2 /* PokemonStorage.swift in Sources */,
-				405F3A0724DEF0E400C9E984 /* PokemonsCoordinator.swift in Sources */,
+				405F3A0724DEF0E400C9E984 /* ListCoordinator.swift in Sources */,
 				405F3A3924E1CBDB00C9E984 /* JsonParserTests.swift in Sources */,
 				405F3A1224DEFC1400C9E984 /* CreateFromStoryboard.swift in Sources */,
 				405F3A0424DEF03600C9E984 /* PokemonsCoordinatorTests.swift in Sources */,

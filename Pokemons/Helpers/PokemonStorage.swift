@@ -10,7 +10,7 @@ import UIKit
 
 class PokemonStorage: NSObject, Storage {
     
-    var items: [Pokemon] = []
+    private var items: [Pokemon] = []
     
     func loadItems() -> [Pokemon] {
         do {

@@ -15,5 +15,4 @@ protocol Coordinator: NSObjectProtocol {
     var navigationController: UINavigationController { get set }
     
     init(navigationController: UINavigationController)
-    
 }

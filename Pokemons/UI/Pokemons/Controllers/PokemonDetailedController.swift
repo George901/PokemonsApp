@@ -10,7 +10,11 @@ import UIKit
 
 class PokemonDetailedController: BaseController, CreateFromStoryboard {
     
+    //MARK: - Public fields
+    
     var viewModel: PokemonDetailsViewModel!
+    
+    //MARK: - Outlets
     
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var mainImage: UIImageView!
@@ -22,7 +26,10 @@ class PokemonDetailedController: BaseController, CreateFromStoryboard {
     @IBOutlet private weak var tableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var tableView: UITableView!
     
+    //MARK: - Lifecycle
+    
     deinit {
+        print("\(self) DEINIT")
         removeObservers()
     }
     
@@ -33,6 +40,8 @@ class PokemonDetailedController: BaseController, CreateFromStoryboard {
         addObservers()
         setupView()
     }
+    
+    //MARK: - Private methods
     
     private func setupDelegates() {
         tableView.dataSource = self
@@ -77,11 +86,15 @@ class PokemonDetailedController: BaseController, CreateFromStoryboard {
         }
     }
     
+    //MARK: - Actions
+    
     @IBAction private func backButtonPressed(_ sender: UIButton) {
         viewModel.back()
     }
     
 }
+
+//MARK: - UITableViewDataSource
 
 extension PokemonDetailedController: UITableViewDataSource {
     
@@ -97,7 +110,13 @@ extension PokemonDetailedController: UITableViewDataSource {
     
 }
 
+//MARK: - UITableViewDelegate
+
 extension PokemonDetailedController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
+    }
     
 }
 

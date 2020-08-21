@@ -9,32 +9,41 @@
 import UIKit
 
 protocol PokemonsViewModel {
+    
+    var pokemons: [Pokemon] { get set }
     var onSearchChange: (([Pokemon]) -> ())? { get set }
-    init(storage: Storage, coordinator: PokemonsCoordinator)
+    init(storage: Storage, coordinator: ListCoordinator)
     func searchForPokemonByName(_ name: String)
     func showPokemonInfo(_ pokemon: Pokemon)
+    
 }
 
 class PokemonsListViewModel: NSObject, PokemonsViewModel {
     
-    private var allPokemons: [Pokemon] = []
-    private let coordinator: PokemonsCoordinator
-    private let storage: Storage
+    // MARK: - Public fields
     
-    private var searchedPokemons: [Pokemon] = [] {
+    var pokemons: [Pokemon] = [] {
         didSet {
-            onSearchChange?(searchedPokemons)
+            onSearchChange?(pokemons)
         }
     }
     
     var onSearchChange: (([Pokemon]) -> ())? {
         didSet {
-            onSearchChange?(searchedPokemons)
+            onSearchChange?(pokemons)
         }
     }
     
+    // MARK: - Private fields
+    
+    private var allPokemons: [Pokemon] = []
+    private let coordinator: ListCoordinator
+    private let storage: Storage
+    
+    // MARK: - Public methods
+    
     required init(storage: Storage,
-                  coordinator: PokemonsCoordinator) {
+                  coordinator: ListCoordinator) {
         self.storage = storage
         self.coordinator = coordinator
         super.init()
@@ -46,12 +55,14 @@ class PokemonsListViewModel: NSObject, PokemonsViewModel {
     }
 
     func searchForPokemonByName(_ name: String) {
-        searchedPokemons = name.isEmpty ? allPokemons : allPokemons.filter({$0.name.lowercased().contains(name.lowercased())})
+        pokemons = name.isEmpty ? allPokemons : allPokemons.filter({$0.name.lowercased().contains(name.lowercased())})
     }
+    
+    // MARK: - Public methods
     
     private func loadPokemons() {
         allPokemons = storage.loadItems()
-        searchedPokemons = allPokemons
+        pokemons = allPokemons
     }
     
 }

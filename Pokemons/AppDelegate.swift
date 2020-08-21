@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let listController = PokemonsListController.instantiateFromStoryboardNamed("Pokemons", storyboardIdentifier: "PokemonsListController", bundle: Bundle.main)
         let navigationController = UINavigationController(rootViewController: listController)
         navigationController.isNavigationBarHidden = true
-        listController.viewModel = PokemonsListViewModel(storage: PokemonStorage(), coordinator: PokemonsCoordinator(navigationController: navigationController))
+        listController.viewModel = PokemonsListViewModel(storage: PokemonStorage(), coordinator: ListCoordinator(navigationController: navigationController))
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }

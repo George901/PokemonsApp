@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol PokemonsApi: NSObjectProtocol {
+protocol PokemonsApi {
     func loadPokemonDetails(pokemonId: Int, onSuccess: SuccessBlock<Pokemon>?, onError: ErrorBlock?)
 }

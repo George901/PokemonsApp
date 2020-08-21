@@ -10,18 +10,24 @@ import UIKit
 
 class PokemonsListController: BaseController, CreateFromStoryboard {
 
+    // MARK: - Public fields
+    
     var viewModel: PokemonsViewModel!
+    
+    // MARK: - Outlets
     
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var searchBar: UISearchBar!
     
-    private var pokemons: [Pokemon] = []
+    // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDelegates()
         setupBindings()
     }
+    
+    // MARK: Private methods
     
     private func setupDelegates() {
         collectionView.dataSource = self
@@ -31,34 +37,39 @@ class PokemonsListController: BaseController, CreateFromStoryboard {
     
     private func setupBindings() {
         viewModel.onSearchChange = { [weak self] (pokemons) in
-            self?.pokemons = pokemons
             self?.collectionView.reloadData()
         }
     }
     
 }
 
+// MARK: - UICollectionViewDataSource
+
 extension PokemonsListController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return pokemons.count
+        return viewModel.pokemons.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PokemonCell", for: indexPath) as! PokemonCell
-        cell.setupWith(pokemons[indexPath.item])
+        cell.setupWith(viewModel.pokemons[indexPath.item])
         return cell
     }
     
 }
 
+// MARK: - UICollectionViewDelegate
+
 extension PokemonsListController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        viewModel.showPokemonInfo(pokemons[indexPath.item])
+        viewModel.showPokemonInfo(viewModel.pokemons[indexPath.item])
     }
     
 }
+
+// MARK: - UICollectionViewDelegateFlowLayout
 
 extension PokemonsListController: UICollectionViewDelegateFlowLayout {
     
@@ -68,10 +79,16 @@ extension PokemonsListController: UICollectionViewDelegateFlowLayout {
     
 }
 
+// MARK: - UISearchBarDelegate
+
 extension PokemonsListController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         viewModel.searchForPokemonByName(searchText)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
     }
     
 }

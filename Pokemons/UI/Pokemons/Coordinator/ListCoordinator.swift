@@ -8,11 +8,15 @@
 
 import UIKit
 
-final class PokemonsCoordinator: NSObject, Coordinator {
+final class ListCoordinator: NSObject, Coordinator {
+        
+    // MARK: - Public fields
     
-    unowned var parentCoordinator: Coordinator?
+    weak var parentCoordinator: Coordinator?
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
+    
+    // MARK: - Public methods
     
     required init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -20,18 +24,16 @@ final class PokemonsCoordinator: NSObject, Coordinator {
     }
     
     func showPokemonDetails(_ pokemon: Pokemon) {
-        
         let detailedVC = PokemonDetailedController.instantiateFromStoryboardNamed("Pokemons", storyboardIdentifier: "PokemonDetailedController", bundle: Bundle.main)
         let viewModel = PokemonDetailedViewModel(pokemon: pokemon,
                                                  api: PokemonsApiClient(apiClient: RestApiClient()))
         viewModel.coordinator = self
         detailedVC.viewModel = viewModel
         navigationController.pushViewController(detailedVC, animated: true)
-        
     }
     
     func backToList() {
-        navigationController.popViewController(animated: true)
+        navigationController.popToRootViewController(animated: true)
     }
 
 }
