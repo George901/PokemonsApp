@@ -15,4 +15,6 @@ protocol Coordinator: NSObjectProtocol {
     var navigationController: UINavigationController { get set }
     
     init(navigationController: UINavigationController)
+    func startFlow(with initialController: UIViewController)
+    func endFlow()
 }

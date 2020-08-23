@@ -12,13 +12,14 @@ protocol PokemonsViewModel {
     
     var pokemons: [Pokemon] { get set }
     var onSearchChange: (([Pokemon]) -> ())? { get set }
+    
     init(storage: Storage, coordinator: ListCoordinator)
     func searchForPokemonByName(_ name: String)
     func showPokemonInfo(_ pokemon: Pokemon)
     
 }
 
-class PokemonsListViewModel: NSObject, PokemonsViewModel {
+class PokemonsViewModelClient: NSObject, PokemonsViewModel {
     
     // MARK: - Public fields
     

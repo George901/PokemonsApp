@@ -15,7 +15,7 @@ protocol PokemonDetailsViewModel {
     func back()
 }
 
-class PokemonDetailedViewModel: NSObject, PokemonDetailsViewModel {
+class PokemonDetailsViewModelClient: NSObject, PokemonDetailsViewModel {
     
     // MARK: - Public fields
     

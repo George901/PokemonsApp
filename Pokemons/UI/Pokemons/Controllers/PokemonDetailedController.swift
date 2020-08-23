@@ -57,6 +57,7 @@ class PokemonDetailedController: BaseController, CreateFromStoryboard {
     private func setupView() {
         statsLabel.text = "Stats"
         setupPokemonData()
+        // TODO: - show/hide activity
         viewModel.updatePokemonDetails { (error) in
             print(error)
         }

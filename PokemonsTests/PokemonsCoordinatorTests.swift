@@ -7,13 +7,16 @@
 //
 
 import XCTest
+@testable import Pokemons
+
 
 class PokemonsCoordinatorTests: XCTestCase {
 
-    var coordinator: PokemonsCoordinator!
+    var coordinator: ListCoordinator!
     
     override func setUp() {
-        coordinator = PokemonsCoordinator(navigationController: UINavigationController(rootViewController: PokemonsListController()))
+        coordinator = ListCoordinator(navigationController: UINavigationController())
+        coordinator.startFlow(with: PokemonsListController())
     }
     
     func testPokemonsCoordinatorCreation() {
@@ -25,7 +28,7 @@ class PokemonsCoordinatorTests: XCTestCase {
     }
     
     func testCoordinatorShouldHavePokemonsListVCAsInitial() {
-        let controller = coordinator.initialController as? PokemonsListController
+        let controller = coordinator.navigationController.viewControllers[0] as? PokemonsListController
         XCTAssertNotNil(controller)
     }
     

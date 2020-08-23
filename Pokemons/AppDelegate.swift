@@ -20,12 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func startMainFlow() {
         window = UIWindow()
-        let listController = PokemonsListController.instantiateFromStoryboardNamed("Pokemons", storyboardIdentifier: "PokemonsListController", bundle: Bundle.main)
-        let navigationController = UINavigationController(rootViewController: listController)
-        navigationController.isNavigationBarHidden = true
-        listController.viewModel = PokemonsListViewModel(storage: PokemonStorage(), coordinator: ListCoordinator(navigationController: navigationController))
+        let navigationController: UINavigationController = UINavigationController()
+        let coordinator: ListCoordinator = ListCoordinator(navigationController: navigationController)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+        coordinator.startFlow(with: PokemonsListController.instantiateFromStoryboardNamed("Pokemons", storyboardIdentifier: "PokemonsListController", bundle: Bundle.main)
+)
+        
     }
 
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 final class ListCoordinator: NSObject, Coordinator {
-        
+  
     // MARK: - Public fields
     
     weak var parentCoordinator: Coordinator?
@@ -23,9 +23,18 @@ final class ListCoordinator: NSObject, Coordinator {
         super.init()
     }
     
+    func startFlow(with initialController: UIViewController) {
+        guard let vc = initialController as? PokemonsListController else { return }
+        vc.viewModel = PokemonsViewModelClient(storage: PokemonStorage(), coordinator: self)
+        navigationController.isNavigationBarHidden = true
+        navigationController.pushViewController(vc, animated: false)
+    }
+    
+    func endFlow() {}
+    
     func showPokemonDetails(_ pokemon: Pokemon) {
         let detailedVC = PokemonDetailedController.instantiateFromStoryboardNamed("Pokemons", storyboardIdentifier: "PokemonDetailedController", bundle: Bundle.main)
-        let viewModel = PokemonDetailedViewModel(pokemon: pokemon,
+        let viewModel = PokemonDetailsViewModelClient(pokemon: pokemon,
                                                  api: PokemonsApiClient(apiClient: RestApiClient()))
         viewModel.coordinator = self
         detailedVC.viewModel = viewModel
